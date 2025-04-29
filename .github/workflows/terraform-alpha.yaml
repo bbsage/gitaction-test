@@ -1,0 +1,36 @@
+name: Terraform GitOps for Alpha
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'alpha'
+      image_tag:
+        description: 'Docker Image Tag'
+        required: true
+        default: 'latest'
+
+#
+#  push:
+#    branches:
+#      - alpha
+#      - alpha-*
+#    paths:
+#      - '1.terraform/gcp/**.tf'
+#      - '1.terraform/gcp/**.tfvars'
+#  pull_request:
+#    branches:
+#      - alpha
+#      - alpha-*
+#    paths:
+#      - '1.terraform/gcp/**.tf'
+#      - '1.terraform/gcp/**.tfvars'
+
+jobs:
+  Call-Terraform:
+    uses: ./.github/workflows/base-terraform.yaml
+    with:
+      WORKSPACE: alpha
+    secrets: inherit

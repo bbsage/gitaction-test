@@ -1,0 +1,19 @@
+name: Terraform GitOps
+
+on:
+  workflow_call:
+    inputs:
+      WORKSPACE:
+        required: true
+        type: string
+
+jobs:
+  Terraform:
+    runs-on: ubuntu-latest
+    env:
+      WORKSPACE: ${{ inputs.WORKSPACE }}
+
+    steps:
+      - name: Checkout code
+        run: |
+          echo $WORKSPACE
